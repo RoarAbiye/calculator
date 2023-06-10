@@ -30,4 +30,4 @@ This project was created by Robel Abiye.
 
 # License
 
-This project is licensed under the GPL3 License.
+This project is licensed under the BEERWARE License.
