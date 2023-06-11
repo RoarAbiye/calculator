@@ -2,11 +2,35 @@
 <html lang="en">
   <head>
     <title>Calculator</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>hellow</h1>
+    <div id="calculator">
+      <div id="display">
+        <div id="result"></div>
+        <div id="operand"></div>
+      </div>
+      <div id="numButtons">
+        <button type="button" value='1' class="numButtons" id="button1">1</button>
+        <button type="button" value='2' class="numButtons" id="button2">2</button>
+        <button type="button" value='3' class="numButtons" id="button3">3</button>
+        <button type="button" value='4' class="numButtons" id="button4">4</button>
+        <button type="button" value='5' class="numButtons" id="button5">5</button>
+        <button type="button" value='6' class="numButtons" id="button6">6</button>
+        <button type="button" value='7' class="numButtons" id="button7">7</button>
+        <button type="button" value='8' class="numButtons" id="button8">8</button>
+        <button type="button" value='9' class="numButtons" id="button9">9</button>
+        <button type="button" value='0' class="numButtons" id="button0">0</button>
+        <button type="button" value='.' class="numButtons" id="buttonDot">.</button>
+        <button type="button" value='+' class="numButtons" id="buttonAdd">+</button>
+        <button type="button" value='-' class="numButtons" id="buttonDeduct">-</button>
+        <button type="button" value='*' class="numButtons" id="buttonMultiply">*</button>
+        <button type="button" value='/' class="numButtons" id="buttonDivide">/</button>
+        <button type="button" value='=' class="numButtons" id="buttonEqual">=</button>
+      </div>
+    </div>
   </body>
 </html>
