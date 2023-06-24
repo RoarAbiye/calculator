@@ -86,8 +86,6 @@ function updateDisplay() {
   console.log(curOperand);
 }
 
-//break down hadler into separate function
-//the new fucntion should be called with apropriate params
 function appendOperand(params) {
   if (curOperand.includes(".") && params === ".") {
     return;
