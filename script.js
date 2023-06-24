@@ -14,7 +14,7 @@ function eventHandler(payload) {
     if (payload === "=") return;
     if (!isNaN(parseFloat(payload)) || payload === ".") {
       currentOperand = payload;
-      operator = ""
+      operator = "";
     } else {
       if (operators.includes(payload)) {
         previousOperand = currentOperand;
