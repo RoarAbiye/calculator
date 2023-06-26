@@ -1,107 +1,38 @@
-const previousOperand_disp = document.querySelector("#previousOperand");
-const currentOperand_disp = document.querySelector("#currentOperand");
 const numButtons = document.querySelectorAll(".number");
 const operatorButton = document.querySelectorAll(".operator");
 const equalButton = document.querySelector(".equal");
-const clearButton  = document.querySelector(".clear");
-const deleteButton  = document.querySelector(".delete");
-
+const clearButton = document.querySelector(".clear");
+const deleteButton = document.querySelector(".delete");
 
 let currentOperand = "";
 let previousOperand = "";
 let operator = "";
-let calculatorRestartRequired = false;
+let calculatorReset = false
 
-const operators = ["+", "-", "/", "*"];
+numButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    appendOperand(button.value);
+  });
+});
 
-numButtons.forEach((button) =>{
-  button.onclick = appendOperand(button.value)
-})
+operatorButton.forEach((button) => {
+  button.addEventListener("click", () => {
+    changeOperator(button.value);
+  });
+});
 
-operatorButton.forEach((button) =>{
-  button.onclick = changeOperator(button.value)
-})
-function eventHandler(payload) {
-  if (calculatorRestartRequired) {
-    if (payload === "=") return;
-    if (!isNaN(parseFloat(payload)) || payload === ".") {
-      currentOperand = payload;
-      operator = "";
-    } else {
-      if (operators.includes(payload)) {
-        previousOperand = currentOperand;
-        currentOperand = "";
-        operator   = payload;
-      }
-    }
-    calculatorRestartRequired = false;
-    updateDisplay();
-    return;
-  }
+clearButton.addEventListener("click", () => {
+  clear();
+});
 
-  if (payload === "=") {
-    if (currentOperand === "" || previousOperand === "") {
-      return;
-    } else {
-      calculate();
-      return;
-    }
-  }
+deleteButton.addEventListener("click", () => {
+  backspace();
+});
 
-  if (payload === "clear") {
-    if (currentOperand === "") {
-      if (previousOperand === "") {
-        return;
-      } else if (operator !== "") {
-        currentOperand = previousOperand;
-        previousOperand = "";
-        operator = "";
-      }
-    } else {
-      currentOperand = currentOperand.slice(0, -1);
-    }
-    updateDisplay();
-    return;
-  }
-
-  if (payload === "all_clear") {
-    currentOperand = "";
-    previousOperand = "";
-    operator = "";
-    updateDisplay();
-    return;
-  }
-
-  if (operators.includes(payload)) {
-    if (
-      currentOperand !== "" &&
-      previousOperand !== "" &&
-      operators.includes(payload)
-    ) {
-      calculate();
-      operator = payload;
-      return;
-    }
-
-    if (currentOperand === "") {
-      if (previousOperand.slice(-1) === payload) {
-        return;
-      } else if (operators.includes(previousOperand.slice(-1))) {
-        previousOperand = previousOperand.replace(/.$/, payload);
-        operator = payload;
-      }
-    } else {
-      previousOperand = currentOperand;
-      operator = payload;
-      currentOperand = "";
-    }
-   } else {
-      currentOperand = currentOperand + payload;
-    }
-  }
-
-  updateDisplay();
-}
+equalButton.addEventListener("click", () => {
+  if (previousOperand === "" || currentOperand === "") return;
+  calculate();
+});
 
 function calculate() {
   if (previousOperand === "" || currentOperand === "") return;
@@ -125,34 +56,18 @@ function calculate() {
     default:
       break;
   }
-  calculatorRestartRequired = true;
+  calculatorReset = true;
   previousOperand = "";
   operator = "";
   updateDisplay();
 }
 
-function updateDisplay() {
-  currentOperand_disp.textContent = operator + currentOperand;
-  previousOperand_disp.textContent = previousOperand;
-}
-
-//append number function
-function appendOperand(params) {
-  if (currentOperand.includes(".") && params === ".") {
-    return;
-  } else if (params === "0" && currentOperand === 0) {
-    return;
-  } else  {
-    currentOperand+= params;
-  }
- }
-
 //clear function
 function clear() {
   currentOperand = "";
-  previousOperand= "";
+  previousOperand = "";
   operator = "";
-  updateDisplay()
+  updateDisplay();
 }
 
 //delete funciton
@@ -165,28 +80,44 @@ function backspace() {
   } else {
     currentOperand = currentOperand.slice(0, -1);
   }
+  updateDisplay();
 }
 
 //change operator function
-function changeOperator(params) {
+function changeOperator(_operator) {
   if (currentOperand === "" && previousOperand === "") return;
   if (currentOperand === "") {
-    operator = params;
+    operator = _operator;
   } else {
     if (previousOperand === "") {
       previousOperand = currentOperand;
-      operator = params;
+      operator = _operator;
       currentOperand = "";
     } else {
       calclate();
-      operator = params;
+      operator = _operator;
     }
   }
-  updateDisplay()
+  updateDisplay();
+}
+
+// add number
+function appendOperand(operand) {
+  if (currentOperand.includes(".") && operand === ".") {
+    return;
+  } else if (operand === "0" && currentOperand === 0) {
+    return;
+  } else if (calculatorReset) {
+    operator = ""
+    currentOperand += operand;
+  } else {
+    currentOperand += operand;
+  }
+  updateDisplay();
 }
 
 function calclate() {
-  let result = "";
+  let result;
   switch (operator) {
     case "+":
       result = parseFloat(currentOperand) + parseFloat(previousOperand);
@@ -201,22 +132,34 @@ function calclate() {
       result = parseFloat(currentOperand) / parseFloat(previousOperand);
       break;
   }
+  currentOperand = result.toFixed(2);
+  previousOperand = "";
+  operator = "";
 }
 
-document.body.addEventListener("keypress", (key) => {
-  key.preventDefault();
+//Updates display
+function updateDisplay() {
+  document.querySelector("#previousOperand").textContent = previousOperand;
 
-  if (
-    !isNaN(parseFloat(key.key)) ||
-    operators.includes(key.key) ||
-    key.key === "."
-  ) {
-    eventHandler(key.key);
-  } else if (
-    operators.includes(key.key) ||
-    key.key === "Enter" ||
-    key.key === "="
-  ) {
-    calculate();
-  }
-});
+  document.querySelector("#currentOperand").textContent = currentOperand;
+
+  document.querySelector("#operator").textContent = operator;
+}
+
+// document.body.addEventListener("keypress", (key) => {
+//   key.preventDefault();
+//
+//   if (
+//     !isNaN(parseFloat(key.key)) ||
+//     operators.includes(key.key) ||
+//     key.key === "."
+//   ) {
+//     eventHandler(key.key);
+//   } else if (
+//     operators.includes(key.key) ||
+//     key.key === "Enter" ||
+//     key.key === "="
+//   ) {
+//     calculate();
+//   }
+// });
