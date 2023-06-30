@@ -19,37 +19,50 @@ body {
 }
 
 #display {
+  font-style: bold;
+  font-size: 18px;
   height: 100px;
   border: 1px solid #c1b5c0;
   border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  box-shadow: 5px 10px 20px black;
 }
 
 #previousOperand {
+  text-align: right;
   height: 40px;
+  color: lightgray;
   border-radius: 5px;
   width: 270px;
-  padding: 5px;
-  margin: 5px;
 }
 
 #currentOperand {
+  text-align: right;
+  height: 40px;
+  color: darkgray;
   height: 40px;
   width: 270px;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px;
+}
+#operator {
+  font-size: 12px;
+  text-align: left;
+  color: gray
 }
 
-#allClearButton {
+button .clear{
   width: 136px;
 }
 #clearButton {
   width: 137px;
 }
 #numButtons-container {
+  display: flex;
+  flex-wrap: wrap;
   padding: 10px;
 }
-.numButtons {
+.button {
   font-size: 18px;
   margin: 1px;
   padding: 1px;

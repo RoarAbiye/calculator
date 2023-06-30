@@ -7,7 +7,7 @@ const deleteButton = document.querySelector(".delete");
 let currentOperand = "";
 let previousOperand = "";
 let operator = "";
-let calculatorReset = false
+let calculatorReset = false;
 
 numButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -108,7 +108,7 @@ function appendOperand(operand) {
   } else if (operand === "0" && currentOperand === 0) {
     return;
   } else if (calculatorReset) {
-    operator = ""
+    operator = "";
     currentOperand += operand;
   } else {
     currentOperand += operand;
@@ -140,9 +140,7 @@ function calclate() {
 //Updates display
 function updateDisplay() {
   document.querySelector("#previousOperand").textContent = previousOperand;
-
   document.querySelector("#currentOperand").textContent = currentOperand;
-
   document.querySelector("#operator").textContent = operator;
 }
 
