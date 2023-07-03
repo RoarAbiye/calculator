@@ -1,3 +1,4 @@
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
 body {
   box-sizing: border-box;
   margin: 0;
@@ -12,66 +13,88 @@ body {
   flex-direction: column;
   width: 310px;
   height: 500px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border-radius: 5px;
-  background-image: linear-gradient(to top, #b0b0e0, #bfbfef);
+  border: 1px solid lightgray;
 }
 
 #display {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  width: 270px;
   font-style: bold;
-  font-size: 18px;
-  height: 100px;
-  border: 1px solid #c1b5c0;
+  font-size: 32px;
+  height: 120px;
   border-radius: 5px;
-  padding: 0;
-  margin: 0;
-  background-color: white;
-  box-shadow: 5px 10px 20px black;
+  padding-top: 10px;
+  margin-top: 10px;
+  border: 1px solid lightgray;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #previousOperand {
   text-align: right;
-  height: 40px;
-  color: lightgray;
-  border-radius: 5px;
-  width: 270px;
 }
 
 #currentOperand {
   text-align: right;
-  height: 40px;
-  color: darkgray;
-  height: 40px;
-  width: 270px;
 }
 #operator {
-  font-size: 12px;
-  text-align: left;
-  color: gray
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 30px;
+  /* text-align: left; */
+  background-color: #8CBEB211;
+  border-radius: 30%;
 }
 
-button .clear{
-  width: 136px;
+.clear {
+  width: 132px;
+  background-color: #F06060;
+  color: white;
 }
-#clearButton {
-  width: 137px;
+
+.delete {
+  background-color: #F3B562;
 }
+.equal {
+  width: 132px;
+  background-color: #F2EBBF;
+}
+
 #numButtons-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
+  margin: 20px;
 }
-.button {
+button {
   font-size: 18px;
   margin: 1px;
   padding: 1px;
   width: 65px;
   height: 65px;
-  border: 2px solid #d7c2c2;
-  background-image: linear-gradient(to top, #f5fff4, #f0f0f0);
+  border: 0.02rem solid #5C5C5C;
   border-radius: 5px;
 }
 .numButtons:active {
   background-image: linear-gradient(to top, #f0f0f0, #f5fff4);
 }
+
+.operator {
+ background-color:  #8CBEB2;
+ color: #F2EBBF;
+}
+
+button:active {
+  border: 2px solid #5C5C5C;
+}
+

@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Calculator</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="style.css" rel="stylesheet" />
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <div id="calculator">
-      <!-- display -->
-      <div id="display">
+
+<head>
+  <title>Calculator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="style.css" rel="stylesheet" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div id="calculator">
+    <!-- display -->
+    <div id="display">
+      <div class="left">
         <div id="operator"></div>
+      </div>
+      <div class="right">
         <div id="previousOperand"></div>
         <div id="currentOperand"></div>
       </div>
-      <div id="numButtons-container">
-        <!-- clear buttons -->
-        <button class="button clear" type="button" value='all_clear'>AC</button>
-        <button class="button delete" type="button" value='delete'>C</button>
-        <!-- number buttons -->
-        <button class="button number" type="button" value='1'>1</button>
-        <button class="button number" type="button" value='2'>2</button>
-        <button class="button number" type="button" value='3'>3</button>
-        <button class="button number" type="button" value='4'>4</button>
-        <button class="button number" type="button" value='5'>5</button>
-        <button class="button number" type="button" value='6'>6</button>
-        <button class="button number" type="button" value='7'>7</button>
-        <button class="button number" type="button" value='8'>8</button>
-        <button class="button number" type="button" value='9'>9</button>
-        <button class="button number" type="button" value='0'>0</button>
-        <button class="button number decimal" type="button" value=".">.</button>
-        <!-- oprator buttons -->
-        <button class="button operator" type="button" value='*' id="buttonMultiply">*</button>
-        <button class="button operator" type="button" value='+' id="buttonAdd">+</button>
-        <button class="button operator" type="button" value='-' id="buttonDeduct">-</button>
-        <button class="button operator" type="button" value='/' id="buttonDivide">/</button>
-        <!-- equal buttn -->
-        <button class="button equal" type="button" value='=' id="buttonEqual">=</button>
-        <script>
-        </script>
-      </div>
     </div>
-  </body>
+    <div id="numButtons-container">
+      <!-- clear buttons -->
+      <button class="button clear nf nf-md-restart" type="button" value='all_clear'></button>
+      <button class="button delete nf nf-md-backspace" type="button" value='delete'></button>
+      <!-- number buttons -->
+      <button class="button operator nf nf-fa-plus" type="button" value='+' id="buttonAdd"></button>
+      <button class="button number" type="button" value='1'>1</button>
+      <button class="button number" type="button" value='2'>2</button>
+      <button class="button number" type="button" value='3'>3</button>
+      <button class="button operator nf nf-fa-minus" type="button" value='-' id="buttonDeduct"></button>
+      <button class="button number" type="button" value='4'>4</button>
+      <button class="button number" type="button" value='5'>5</button>
+      <button class="button number" type="button" value='6'>6</button>
+      <button class="button operator nf nf-fa-times" type="button" value='*' id="buttonMultiply"></button>
+      <button class="button number" type="button" value='7'>7</button>
+      <button class="button number" type="button" value='8'>8</button>
+      <button class="button number" type="button" value='9'>9</button>
+      <button class="button operator nf nf-md-division" type="button" value='/' id="buttonDivide"></button>
+      <button class="button number decimal" type="button" value=".">.</button>
+      <button class="button number" type="button" value='0'>0</button>
+      <button class="button equal nf nf-fae-equal" type="button" value='=' id="buttonEqual"></button>
+      <script>
+      </script>
+    </div>
+  </div>
+</body>
+
 </html>

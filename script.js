@@ -4,10 +4,10 @@ const equalButton = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
 const deleteButton = document.querySelector(".delete");
 
-let currentOperand = "";
-let previousOperand = "";
+let CURRENT_OPERAND = "";
+let PREVIOUS_OPERAND = "";
 let OPERATOR = "";
-let calculatorReset = false;
+let CALCULATOR_RESET = false;
 
 numButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -30,11 +30,11 @@ deleteButton.addEventListener("click", () => {
 });
 
 equalButton.addEventListener("click", () => {
-  if (previousOperand === "" || currentOperand === "") return;
-  if (calculatorReset) {
+  if (PREVIOUS_OPERAND === "" || CURRENT_OPERAND === "") return;
+  if (CALCULATOR_RESET) {
     return
   }
-  calculatorReset = true;
+  CALCULATOR_RESET = true;
   calculate();
   OPERATOR = "";
   updateDisplay();
@@ -44,40 +44,40 @@ equalButton.addEventListener("click", () => {
 
 //clear function
 function clear() {
-  currentOperand = "";
-  previousOperand = "";
+  CURRENT_OPERAND = "";
+  PREVIOUS_OPERAND = "";
   OPERATOR = "";
   updateDisplay();
 }
 
 //delete funciton
 function deleteOneChar() {
-  if (currentOperand === "") {
+  if (CURRENT_OPERAND === "") {
     if (OPERATOR !== "") {
       OPERATOR = "";
-    } else if (previousOperand !== "") {
-      currentOperand = previousOperand
-      previousOperand = ""
+    } else if (PREVIOUS_OPERAND !== "") {
+      CURRENT_OPERAND = PREVIOUS_OPERAND
+      PREVIOUS_OPERAND = ""
     }
   } else {
-    currentOperand = currentOperand.slice(0, -1);
+    CURRENT_OPERAND = CURRENT_OPERAND.slice(0, -1);
   }
   updateDisplay();
 }
 
 //change OPERATOR function
 function changeOperator(operator) {
-  if (calculatorReset) {
-    calculatorReset = false
+  if (CALCULATOR_RESET) {
+    CALCULATOR_RESET = false
   }
-  if (currentOperand === "" && previousOperand === "") return;
-  if (currentOperand === "") {
+  if (CURRENT_OPERAND === "" && PREVIOUS_OPERAND === "") return;
+  if (CURRENT_OPERAND === "") {
     OPERATOR = operator;
   } else {
-    if (previousOperand === "") {
-      previousOperand = currentOperand;
+    if (PREVIOUS_OPERAND === "") {
+      PREVIOUS_OPERAND = CURRENT_OPERAND;
       OPERATOR = operator;
-      currentOperand = "";
+      CURRENT_OPERAND = "";
     } else {
       calculate();
       OPERATOR = operator;
@@ -88,27 +88,27 @@ function changeOperator(operator) {
 
 // add number
 function appendOperand(operand) {
-  if (calculatorReset) {
-    calculatorReset = false
+  if (CALCULATOR_RESET) {
+    CALCULATOR_RESET = false
     clear()
-    currentOperand += operand;
-  } else   if (currentOperand.includes(".") && operand === ".") {
+    CURRENT_OPERAND += operand;
+  } else   if (CURRENT_OPERAND.includes(".") && operand === ".") {
     return;
-  } else if (currentOperand === "0") {
+  } else if (CURRENT_OPERAND === "0") {
       if (operand === "0"){
         return
       } else if (operand === ".") {
-          currentOperand = currentOperand + operand
+          CURRENT_OPERAND = CURRENT_OPERAND + operand
       }
       else {
-        currentOperand = operand
+        CURRENT_OPERAND = operand
       } 
   } else {
-    if(previousOperand === "" && OPERATOR !== "") {
-      previousOperand = currentOperand
-      currentOperand = operand
+    if(PREVIOUS_OPERAND === "" && OPERATOR !== "") {
+      PREVIOUS_OPERAND = CURRENT_OPERAND
+      CURRENT_OPERAND = operand
     } else {
-      currentOperand += operand;
+      CURRENT_OPERAND += operand;
     }
   }
   updateDisplay();
@@ -118,31 +118,31 @@ function calculate() {
   let result;
   switch (OPERATOR) {
     case "+":
-      result = parseFloat(currentOperand) + parseFloat(previousOperand);
+      result = parseFloat(CURRENT_OPERAND) + parseFloat(PREVIOUS_OPERAND);
       break;
     case "-":
-      result = parseFloat(currentOperand) - parseFloat(previousOperand);
+      result = parseFloat(CURRENT_OPERAND) - parseFloat(PREVIOUS_OPERAND);
       break;
     case "*":
-      result = parseFloat(currentOperand) * parseFloat(previousOperand);
+      result = parseFloat(CURRENT_OPERAND) * parseFloat(PREVIOUS_OPERAND);
       break;
     case "/":
-      if (currentOperand === "0") {
+      if (CURRENT_OPERAND === "0") {
         alert("I don't really know how to divide by zero... it must be some kind of magic")
         return;
       } else {
-        result = parseFloat(currentOperand) / parseFloat(previousOperand);
+        result = parseFloat(CURRENT_OPERAND) / parseFloat(PREVIOUS_OPERAND);
       }
       break;
   }
-  currentOperand = result.toString();
-  previousOperand = "";
+  CURRENT_OPERAND = result.toString();
+  PREVIOUS_OPERAND = "";
 }
 
 //Updates display
 function updateDisplay() {
-  document.querySelector("#previousOperand").textContent = previousOperand;
-  document.querySelector("#currentOperand").textContent = currentOperand;
+  document.querySelector("#previousOperand").textContent = PREVIOUS_OPERAND;
+  document.querySelector("#currentOperand").textContent = CURRENT_OPERAND;
   document.querySelector("#operator").textContent = OPERATOR;
 }
 
