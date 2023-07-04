@@ -6,6 +6,8 @@ body {
   display: flex;
   justify-content: center;
   padding: 50px;
+  background-color: #5C4B4BDD;  
+  color: #F2EBBF;
 }
 
 #calculator {
@@ -46,7 +48,7 @@ body {
 #operator {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-end;
   width: 30px;
   height: 30px;
   padding: 5px;
