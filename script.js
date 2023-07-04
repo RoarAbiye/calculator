@@ -128,7 +128,15 @@ function calculate() {
       break;
     case "/":
       if (CURRENT_OPERAND === "0") {
-        alert("I don't really know how to divide by zero... it must be some kind of magic")
+        alert(`Why did the mathematician get fired from his job? 
+        He kept trying to divide by zero.
+        When his boss asked him why he kept doing it, he said, "I just can't resist the temptation."
+        His boss replied, "Well, you're tempting fate. If you keep dividing by zero, you're going to end up in a world of pain."
+        The mathematician just shrugged and said, "I'm willing to take that risk."
+        And so, he continued to divide by zero, until one day, he finally got his comeuppance. 
+        He was working on a complex equation, and when he tried to divide by zero, the universe imploded.
+        The mathematician was never seen again.
+        The moral of the story is, don't divide by zero. It's not worth it.`)
         return;
       } else {
         result = parseFloat(CURRENT_OPERAND) / parseFloat(PREVIOUS_OPERAND);
