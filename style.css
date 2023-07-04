@@ -1,4 +1,7 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
+html {
+  font-family: 'Helvetica', sans-serif;
+}
 body {
   box-sizing: border-box;
   margin: 0;
@@ -60,7 +63,7 @@ body {
 }
 
 .clear {
-  width: 132px;
+  /* width: 132px; */
   background-color: #F06060;
   color: white;
 }

@@ -3,6 +3,7 @@ const operatorButton = document.querySelectorAll(".operator");
 const equalButton = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
 const deleteButton = document.querySelector(".delete");
+const flipSign = document.querySelector(".sign");
 
 let CURRENT_OPERAND = "";
 let PREVIOUS_OPERAND = "";
@@ -21,6 +22,13 @@ operatorButton.forEach((button) => {
   });
 });
 
+flipSign.addEventListener('click', ()=>{
+  if (CURRENT_OPERAND === ".") {
+    return
+  }
+  CURRENT_OPERAND = (parseFloat(CURRENT_OPERAND) * -1).toString();
+  updateDisplay();
+})
 clearButton.addEventListener("click", () => {
   clear();
 });
@@ -145,7 +153,7 @@ The moral of the story is, don't divide by zero. It's not worth it.`
       }
       break;
   }
-  CURRENT_OPERAND = result.toString();
+  CURRENT_OPERAND = result.toFixed(2).toString()
   PREVIOUS_OPERAND = "";
 }
 
